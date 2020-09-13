@@ -1,0 +1,101 @@
+*{
+    font-family: 'Raleway', sans-serif;
+    
+}
+<<<<<<< HEAD
+<<<<<<< HEAD
+html, body{
+    width: 100%;
+    height: 100%;
+}
+
+
+/* navbar */
+.logo-navbar{
+height: 75px;
+
+}
+nav{
+    background-color:#47ada0;
+}
+ul li a{
+    font-size: 20px;
+}
+
+/*footer*/
+
+
+footer {
+    width: 100%;
+    background-color: rgb(2, 27, 39);
+    padding: 10px 0px;
+    position: absolute;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.sisc {
+    height: 100%;
+    display: flex;
+    margin-right:25vw;
+}
+
+
+.sisc p {
+    color:white;  
+    font-size:12px;
+    margin-right:5px;
+}
+
+.academia-icon {
+    height: 100%;
+    display: flex;
+    margin-right:25vw;
+}
+
+.academia-icon a {
+    color:white;  
+    font-size:12px;
+    margin-right:5px;
+
+}
+
+.social a{
+    padding-left:7px;
+}
+
+.social {
+    height: 100%;
+}
+
+@media screen and (max-width: 768px){
+    .sisc {
+        margin-right: 0vw;
+    }
+    .academia-icon {
+        margin-right: 0vw;
+    }
+}
+=======
+=======
+>>>>>>> 54573ca0ae5b944d318f0201d124fd87ab00dd37
+
+/* navbar */
+.logo-navbar {
+  height: 75px;
+}
+nav {
+  background-color: #47ada0
+  opacity: 0.4;
+}
+ul li a {
+  font-size: 20px;
+}
+
+<<<<<<< HEAD
+>>>>>>> fara link si ore
+=======
+>>>>>>> 54573ca0ae5b944d318f0201d124fd87ab00dd37

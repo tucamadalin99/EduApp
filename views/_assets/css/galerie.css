@@ -1,0 +1,13 @@
+button:focus{
+    background-color: transparent !important;
+}
+.pictures{
+padding: 10px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .pictures{
+       
+    }
+  }

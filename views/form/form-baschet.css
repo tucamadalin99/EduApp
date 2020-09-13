@@ -1,0 +1,80 @@
+body {
+  background-image: url("../img/baschet_form.png");
+}
+.verde {
+  background-color: #61cf88;
+}
+.verde:hover {
+  background-color: #61cf88;
+}
+.verde:active {
+  background-color: #61cf88;
+}
+
+.input-field .prefix.active {
+  color: #61cf88;
+}
+.md-trigger {
+  color: #61cf88;
+}
+.titlu {
+  text-align: center;
+  padding-top: 25px;
+}
+b {
+  color: #5f9d68;
+}
+.form-content {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 25px;
+  background-color: white;
+  opacity: 0.92;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+#submit {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px;
+}
+input[type="text"]:not(.browser-default):focus:not([readonly]) {
+  border-bottom: 1px solid #2c2e2e;
+  box-shadow: 0 1px 0 0 #484a4a;
+}
+
+input[type="email"]:not(.browser-default):focus:not([readonly]) {
+  border-bottom: 1px solid #2c2e2e;
+  box-shadow: 0 1px 0 0 #484a4a;
+}
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #2c2e2e;
+  box-shadow: 0 1px 0 0 #484a4a;
+}
+
+textarea.materialize-textarea:focus:not([readonly]) + label {
+  color: #2c2e2e;
+}
+
+@media only screen and (max-width: 600px) {
+  .row .col.s6 {
+    width: 100%;
+  }
+  .form-content {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.organizatie {
+  display: inline-block;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  margin-bottom: 30px;
+}

@@ -1,0 +1,224 @@
+h1 {
+    font-size: 36px;
+    background: -webkit-linear-gradient(right, #008cba, rgba(253, 253, 254, 0.09));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    letter-spacing: 25px;
+    line-height: 3;
+    text-align: center;
+    padding: 15px;
+}
+
+.container {
+    width: 80%;
+    padding: 50px 0;
+    margin: 50px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.container:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -1px;
+    width: 2px;
+    height: 100%;
+    background: #CCD1D9;
+    z-index: 1
+}
+
+.timeline-block {
+    width: -webkit-calc(50% + 8px);
+    width: -moz-calc(50% + 8px);
+    width: calc(50% + 8px);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-box-pack: justify;
+    justify-content: space-between;
+    clear: both;
+}
+
+.timeline-block-right {
+    float: right;
+}
+
+.timeline-block-left {
+    float: left;
+    direction: rtl;
+}
+
+.marker {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid #F5F7FA;
+    background: #4FC1E9;
+    margin-top: 10px;
+    z-index: 9999
+}
+
+.timeline-content {
+    width: 95%;
+    padding: 0 15px;
+    color: #666
+}
+
+.timeline-content h3 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 25px;
+    font-weight: 500
+}
+
+.timeline-content span {
+    font-size: 15px;
+    color: #a4a4a4;
+}
+
+.timeline-content p {
+    font-size: 14px;
+    line-height: 1.5em;
+    word-spacing: 1px;
+    color: #888;
+}
+
+.picture {
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 100%;
+        letter-spacing: 10px;
+    }
+    .container:before {
+        left: 8px;
+        width: 2px;
+    }
+    .timeline-block {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    .timeline-block-right {
+        float: none;
+    }
+    .timeline-block-left {
+        float: none;
+        direction: ltr;
+    }
+    footer {
+        width: 100%;
+    }
+}
+
+.u-center-text {
+    text-align: center !important;
+}
+
+.u-margin-bottom-big {
+    margin-bottom: 8rem !important;
+}
+
+@media only screen and (max-width: 56.25em) {
+    .u-margin-bottom-big {
+        margin-bottom: 5rem !important;
+    }
+}
+
+.u-margin-top-big {
+    margin-top: 8rem !important;
+}
+
+.heading-secondary {
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: inline-block;
+    background-image: linear-gradient(to right, #6abec5, #09829b);
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: 0.2rem;
+    transition: all 0.2s;
+}
+
+@media only screen and (max-width: 56.25em) {
+    .heading-secondary {
+        font-size: 3rem;
+    }
+}
+
+@media only screen and (max-width: 37.5em) {
+    .heading-secondary {
+        font-size: 2.5rem;
+    }
+}
+
+.heading-secondary:hover {
+    text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+
+/*footer*/
+
+footer {
+    width: 100%;
+    background-color: rgb(2, 27, 39);
+    padding: 10px 0px;
+    position: absolute;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.sisc {
+    height: 100%;
+    display: flex;
+    margin-right: 25vw;
+}
+
+.sisc p {
+    color: white;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.academia-icon {
+    height: 100%;
+    display: flex;
+    margin-right: 25vw;
+}
+
+.academia-icon a {
+    color: white;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.social a {
+    padding-left: 7px;
+}
+
+.social {
+    height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .sisc {
+        margin-right: 0vw;
+    }
+    .academia-icon {
+        margin-right: 0vw;
+    }
+}
+
+==============>>>>>>>54573ca0ae5b944d318f0201d124fd87ab00dd37

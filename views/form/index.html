@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./form-baschet.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="../_assets/img/sisc-favicon.png"
+      sizes="32x32"
+    />
+    <title>BoraturaApp</title>
+  </head>
+
+  <body>
+    <div class="form-content" id="form">
+      <form id="register_form" name="register_form">
+        <div class="textform">
+          <h2 class="form-signin-heading flow-text titlu">Adaugare articol</h2>
+          <br />
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">title</i>
+            <input
+              type="text"
+              aria-required="true"
+              class="form-control validate"
+              id="title"
+              name="title"
+              pattern="^([^0-9]*)$"
+              title="Folosiţi doar litere."
+            /><br />
+            <label for="title"
+              >Titlu articol<span class="red-text active"> *</span></label
+            >
+          </div>
+          <div class="input-field col s6">
+            <i class="material-icons prefix">person</i>
+            <input
+              type="text"
+              aria-required="true"
+              class="form-control validate"
+              id="author"
+              name="author"
+              title="Folosiţi doar litere."
+            /><br />
+            <label for="author"
+              >Autor<span class="red-text"> *</span></label
+            >
+          </div>
+        </div>
+        <div class="row">
+            <i class="material-icons prefix">description</i>
+            <label for="articolmain">Articol<span class="red-text active"> *</span></label>
+            </div>
+          <textarea
+            name="body"
+            id="articolmain",
+            name="articolmain"
+            cols="30"
+            rows="10"
+            style="
+              max-width: 940px;
+              margin: 0 auto;
+              height: 300px;
+              margin-left: 30px;
+            "
+          ></textarea><div class="row">
+            <div class="input-field col s6 organizatie">
+                <i class="material-icons prefix">work_outline</i>
+                <input type="text" aria-required="true" class="form-control validate" id="org" name="org"
+                    title="Folosiţi doar litere." /><br />
+                <label for="org">Organizatie<span class="red-text"> *</span></label>
+            </div>
+        </div>
+        </div>
+
+        <div class="submit">
+          <input
+            type="submit"
+            id="submit"
+            class="btn btn-lg btn-primary btn-block verde"
+            value="Adauga articol"
+          />
+        </div>
+      </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script type="text/javascript">
+      document.querySelector("#submit").addEventListener("click", function (e) {
+        e.preventDefault();
+
+        toastr.remove();
+        var isValid = true;
+
+        var article = {
+          title: document.querySelector("#title").value,
+          author: document.querySelector("#author").value,
+          bodyText: document.querySelector("#articolmain").value,
+          org: document.querySelector('#org').value
+                };
+
+
+        if (isValid) {
+         axios
+            .post("http://localhost:3031/addArt", {
+              title: article.title,
+              author: article.author,
+              bodyText: article.bodyText,
+              org:article.org
+            })
+            .then((response) => {
+              toastr.success("Articol adaugat! Multumesc sa-ti trag la muie.")
+            })
+            .catch((error) => {
+            //   const values = Object.values(error.response.data);
+            //   values.map(function (item) {
+            //     toastr.error(item);
+            //   });
+            toastr.error('Ceva n-a mers. Muie')
+            });
+        }
+      });
+    </script>
+  </body>
+</html>
