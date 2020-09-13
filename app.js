@@ -4,7 +4,7 @@ const app = express();
 app.use(bodyParser.json());
 const port = 3031;
 const articleDB = require("./models").article;
-const adminDB =  require("./models").admin;
+const adminDB = require("./models").admin;
 const initPassport = require("./config/passport-config");
 const session = require("express-session");
 const cors = require("cors");
@@ -24,7 +24,6 @@ const corsOptions = {
   credentials: true,
   enablePreflight: true,
 };
-
 
 initPassport(
   passport,
@@ -58,8 +57,6 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Credentials", "true");
   next();
 });
-
-
 
 app.listen(port, () => {
   console.log("Server running on " + port);
@@ -95,49 +92,47 @@ app.post("/register", async (req, res) => {
     prenume: req.body.prenume,
     email: req.body.email,
     password: req.body.password,
-   
+  };
+  if (!admin.nume) {
+    errors.nume = "Campul nume nu a fost completat";
   }
-  if ((!admin.nume)) {
-    errors.nume = "Campul nume nu a fost completat"
-}
-if ((!admin.prenume)) {
-  errors.nume = "Campul prenume nu a fost completat"
-}
-if ((!admin.email)) {
-  errors.nume = "Campul email nu a fost completat"
-}
-if ((!admin.password)) {
-  errors.nume = "Campul password nu a fost completat"
-}
-if(!admin.password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)){
-  errors.passInv = "Parola trebuie sa aiba minim 8 caractere, o litera si un numar!";
-}
-
-
+  if (!admin.prenume) {
+    errors.nume = "Campul prenume nu a fost completat";
+  }
+  if (!admin.email) {
+    errors.nume = "Campul email nu a fost completat";
+  }
+  if (!admin.password) {
+    errors.nume = "Campul password nu a fost completat";
+  }
+  if (!admin.password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)) {
+    errors.passInv =
+      "Parola trebuie sa aiba minim 8 caractere, o litera si un numar!";
+  }
 
   if (Object.keys(errors).length === 0) {
     try {
-      const hashpass = await bcrypt.hash(admin.password,10);
+      const hashpass = await bcrypt.hash(admin.password, 10);
       admin.password = hashpass;
-      await adminDB.create(admin)
+      await adminDB.create(admin);
       res.status(201).send({
-        message: 'Admin adugat'
-      })
+        message: "Admin adugat",
+      });
     } catch (error) {
       console.log(error);
       res.status(500).send({
-        message: 'Eroare la inregistrarea unu admin'
-      })
+        message: "Eroare la inregistrarea unu admin",
+      });
     }
   } else {
     res.status(400).send({
-      errors
-    })
+      errors,
+    });
   }
 });
 
 app.get("/success", async (req, res) => {
-   res.status(200).send({ message: "You logged in!" });
+  res.status(200).send(await req.session.id);
 });
 
 app.get("/fail", async (req, res) => {
@@ -192,8 +187,6 @@ app.delete("/logout", async (req, res) => {
   res.redirect("/logout");
 });
 
-
-
 app.post("/addArt", async (req, res) => {
   const article = {
     title: req.body.title,
@@ -225,35 +218,35 @@ app.get("/getProjectArts", async (req, res) => {
     });
 });
 app.get("/getArts", async (req, res) => {
-  await articleDB
-    .findAll()
-    .then((articleFound) => {
-      res.status(200).send(articleFound);
-    });
+  await articleDB.findAll().then((articleFound) => {
+    res.status(200).send(articleFound);
+  });
 });
 
-app.put("/updateArt", async(req,res)=>{
-  await articleDB
-  try{
-    const article = await articleDB.findOne({where:{
-    title: req.body.title
-    }})
-    
-    article.update({
-      title: req.body.title,
-    author: req.body.author,
-    bodyText: req.body.bodyText,
-    org: req.body.org,
-    project: req.body.project,
+app.put("/updateArt", async (req, res) => {
+  await articleDB;
+  try {
+    const article = await articleDB.findOne({
+      where: {
+        title: req.body.title,
+      },
+    });
 
-    }).then(() => {
-      res.status(200).send({message: "Articolul a fost updatat"})
-    })
+    article
+      .update({
+        title: req.body.title,
+        author: req.body.author,
+        bodyText: req.body.bodyText,
+        org: req.body.org,
+        project: req.body.project,
+      })
+      .then(() => {
+        res.status(200).send({ message: "Articolul a fost updatat" });
+      });
+  } catch (err) {
+    res.status(500).send({ message: "NU a mers uppdate-ul pe articol" });
   }
-  catch(err){
-    res.status(500).send({message:"NU a mers uppdate-ul pe articol"})
-  }
-
-})
+});
 
 app.use("/", express.static("./views/form"));
+app.use("/login", express.static("./views/form/html/login.html"));

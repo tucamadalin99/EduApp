@@ -141,7 +141,14 @@
       theme: 'snow'
     });
 
- 
+    window.addEventListener("load", () => {
+      const page =  window.location;
+      if(window.sessionStorage.getItem("token")) {
+        console.log('intrat');
+      } else {
+        window.location.replace('login')
+      }
+    })
 
   </script>
 </body>
