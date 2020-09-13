@@ -10,7 +10,9 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="./form-baschet.css" />
   <link rel="icon" type="image/png" href="../_assets/img/sisc-favicon.png" sizes="32x32" />
-  <title>BoraturaApp</title>
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <link rel="stylesheet" href="../_assets/css/style.css">
+  <title>EduApp</title>
 </head>
 
 <body>
@@ -19,6 +21,14 @@
       <div class="textform">
         <h2 class="form-signin-heading flow-text titlu">Adaugare articol</h2>
         <br />
+      </div>
+      <div class="row">
+        <div id="editor-container">
+          <p>Bolduiti-va singuri articolele de acum in plm</p>
+          <p><br></p>
+        </div>
+
+
       </div>
       <div class="row">
         <div class="input-field col s6">
@@ -34,16 +44,7 @@
           <label for="author">Autor<span class="red-text"> *</span></label>
         </div>
       </div>
-      <div class="row">
-        <i class="material-icons prefix">description</i>
-        <label for="articolmain">Articol<span class="red-text active"> *</span></label>
-      </div>
-      <textarea name="body" id="articolmain" , name="articolmain" cols="30" rows="10" style="
-              max-width: 940px;
-              margin: 0 auto;
-              height: 300px;
-              margin-left: 30px;
-            "></textarea>
+
       <div class="row">
         <div class="input-field col s6 organizatie">
           <i class="material-icons prefix">work_outline</i>
@@ -51,7 +52,15 @@
             title="Folosiţi doar litere." /><br />
           <label for="org">Organizatie<span class="red-text"> *</span></label>
         </div>
+        <div class="input-field col s6 organizatie">
+          <i class="material-icons prefix">work_outline</i>
+
+
+        </div>
       </div>
+
+
+
   </div>
 
   <div class="submit">
@@ -60,10 +69,17 @@
   </form>
   </div>
 
+
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+  <script src="../_assets/js/script.js"></script>
   <script type="text/javascript">
     document.querySelector("#submit").addEventListener("click", function (e) {
       e.preventDefault();
@@ -108,10 +124,10 @@
             toastr.success("Articol adaugat! Multumesc sa-ti trag la muie.")
           })
           .catch((error) => {
-              const values = Object.values(error.response.data);
-              values.map(function (item) {
-                toastr.error(item);
-              });
+            const values = Object.values(error.response.data);
+            values.map(function (item) {
+              toastr.error(item);
+            });
 
           });
       }
