@@ -88,7 +88,7 @@ app.get("/reset", (req, res) => {
     });
 });
 app.post("/register", async (req, res) => {
-  const errors = [];
+  const errors = {};
 
   const admin = {
     nume: req.body.nume,
@@ -97,9 +97,25 @@ app.post("/register", async (req, res) => {
     password: req.body.password,
    
   }
+  if ((!admin.nume)) {
+    errors.nume = "Campul nume nu a fost completat"
+}
+if ((!admin.prenume)) {
+  errors.nume = "Campul prenume nu a fost completat"
+}
+if ((!admin.email)) {
+  errors.nume = "Campul email nu a fost completat"
+}
+if ((!admin.password)) {
+  errors.nume = "Campul password nu a fost completat"
+}
+if(!admin.password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)){
+  errors.passInv = "Parola trebuie sa aiba minim 8 caractere, o litera si un numar!";
+}
 
 
-  if (!errors.length) {
+
+  if (Object.keys(errors).length === 0) {
     try {
       const hashpass = await bcrypt.hash(admin.password,10);
       admin.password = hashpass;
@@ -184,6 +200,7 @@ app.post("/addArt", async (req, res) => {
     author: req.body.author,
     bodyText: req.body.bodyText,
     org: req.body.org,
+    project: req.body.project,
   };
 
   await articleDB
@@ -196,16 +213,47 @@ app.post("/addArt", async (req, res) => {
     });
 });
 
-app.get("/getArt/:id", async (req, res) => {
+app.get("/getProjectArts", async (req, res) => {
   await articleDB
-    .findOne({
+    .findAll({
       where: {
-        id: req.params.id,
+        project: req.body.project,
       },
     })
     .then((articleFound) => {
       res.status(200).send(articleFound);
     });
 });
+app.get("/getArts", async (req, res) => {
+  await articleDB
+    .findAll()
+    .then((articleFound) => {
+      res.status(200).send(articleFound);
+    });
+});
+
+app.put("/updateArt", async(req,res)=>{
+  await articleDB
+  try{
+    const article = await articleDB.findOne({where:{
+    title: req.body.title
+    }})
+    
+    article.update({
+      title: req.body.title,
+    author: req.body.author,
+    bodyText: req.body.bodyText,
+    org: req.body.org,
+    project: req.body.project,
+
+    }).then(() => {
+      res.status(200).send({message: "Articolul a fost updatat"})
+    })
+  }
+  catch(err){
+    res.status(500).send({message:"NU a mers uppdate-ul pe articol"})
+  }
+
+})
 
 app.use("/", express.static("./views/form"));

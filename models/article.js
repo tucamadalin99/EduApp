@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       author: DataTypes.STRING,
       bodyText: DataTypes.STRING,
       org: DataTypes.STRING,
+      project: DataTypes.STRING,
     },
     {
       timestamps: true,
