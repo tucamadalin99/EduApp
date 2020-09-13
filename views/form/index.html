@@ -23,8 +23,9 @@
         <br />
       </div>
       <div class="row">
+        <input name="textBody" type="hidden" id="textBody">
         <div id="editor-container">
-          <p>Bolduiti-va singuri articolele de acum in plm</p>
+          <p></p>
           <p><br></p>
         </div>
 
@@ -89,10 +90,13 @@
 
       var article = {
         title: document.querySelector("#title").value,
+        textBody: document.querySelector('#textBody').value,
         author: document.querySelector("#author").value,
-        bodyText: document.querySelector("#articolmain").value,
         org: document.querySelector('#org').value
       };
+
+      article.textBody = JSON.stringify(quill.getContents());
+      console.log(article.textBody);
 
       if (!article.title) {
         isValid = false;
@@ -117,7 +121,7 @@
           .post("http://localhost:3031/addArt", {
             title: article.title,
             author: article.author,
-            bodyText: article.bodyText,
+            bodyText: article.textBody,
             org: article.org
           })
           .then((response) => {
@@ -137,9 +141,10 @@
       theme: 'snow'
     });
 
-
+ 
 
   </script>
 </body>
 
 </html>
+
