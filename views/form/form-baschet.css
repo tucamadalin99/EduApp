@@ -78,3 +78,8 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 .btn-primary {
   margin-bottom: 30px;
 }
+
+#editor-container {
+  height: 24rem;
+}
+
