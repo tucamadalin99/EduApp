@@ -1,2 +1,1 @@
 # EduApp
-Boratura
